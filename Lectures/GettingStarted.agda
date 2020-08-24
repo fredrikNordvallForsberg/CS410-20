@@ -38,3 +38,6 @@ swap (a , b) = b , a
 distribute : {A B C : Set} → A × (B ⊎ C) -> (A × B) ⊎ (A × C)
 distribute (a , inj₁ b) = inj₁ (a , b)
 distribute (a , inj₂ c) = inj₂ (a , c)
+
+distributeInverse : {A B C : Set} → (A × B) ⊎ (A × C) -> A × (B ⊎ C)
+distributeInverse = ?
