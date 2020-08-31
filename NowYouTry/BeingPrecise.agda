@@ -1,4 +1,4 @@
-module Lectures.BeingPrecise where
+module NowYouTry.BeingPrecise where
 
 open import Agda.Builtin.Nat
 
