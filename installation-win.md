@@ -16,7 +16,7 @@ and replace the path with the actual one for your environment using forward slas
 3\. Run 
 ``` 
 cabal update
-cabal install Agda
+cabal install alex happy Agda
 ```
 This will compile Agda on your machine. The process might take very long time (> 30 minutes) and is quite memory intensive (make sure you have at least 4GB free). 
 
@@ -36,11 +36,4 @@ This will compile Agda on your machine. The process might take very long time (>
 $DIR\agda-stdlib-1.3\standard-library.agda-lib
 ```
 
-8\. In the root directory of your project, create an .agda-lib file, e.g. `One.agda-lib` in the directory where you put `One.agda` (naming does not matter). In this way, Agda can locate the standard library. 
-Paste these lines there:
-```
-depend: standard-library
-include: .
-```
-
-9\. Now you are ready to start working on your first coursework :slightly_smiling_face:. Good luck!
+8\. Now you are ready to start working on your first coursework :slightly_smiling_face:. Good luck!
