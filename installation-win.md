@@ -22,7 +22,7 @@ This will compile Agda on your machine. The process might take very long time (>
 
 4\. Install emacs. You can get a Windows installer from [here](https://ftp.gnu.org/gnu/emacs/windows/emacs-27/).
 
-5\. Create `%appdata%\.emacs.d\init.el` (also making `.emacs.d` if needed) and paste the following:
+5\. Create ~~`%appdata%\.emacs.d\init.el` (also making `.emacs.d` if needed)~~ **UPDATED** : `%appdata%\.emacs` and paste the following:
 ```
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
