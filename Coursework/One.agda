@@ -41,7 +41,7 @@ open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; sym;
 -- off the later parts of the file until you get there.
 
 ------------------------------------------------------------------------
--- SOME GOOD OLD FUNCTIONAL PROGRAMMING: TREESORT (25 MARKS in total)
+-- SOME GOOD OLD FUNCTIONAL PROGRAMMING: TREESORT (15 MARKS in total)
 ------------------------------------------------------------------------
 
 {- ??? 1.1 Implement concatenation for lists.
