@@ -31,6 +31,7 @@ open import Data.Fin         using (Fin; zero; suc)
 open import Data.Product     using (_×_; Σ; _,_; proj₁; proj₂)
 open import Data.Sum         using (_⊎_; inj₁; inj₂)
 open import Data.Empty       using (⊥; ⊥-elim)
+open import Function         using (_∘_; id)
 open import Relation.Nullary using (¬_)
 open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; sym; trans)
 
