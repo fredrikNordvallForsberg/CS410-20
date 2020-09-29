@@ -36,4 +36,10 @@ This will compile Agda on your machine. The process might take very long time (>
 $DIR\agda-stdlib-1.3\standard-library.agda-lib
 ```
 
-8\. Now you are ready to start working on your first coursework :slightly_smiling_face:. Good luck!
+8\. (OPTIONAL) Create `%appdata%\agda\defaults` and add the following line to it:
+```
+standard-library
+```
+This means that all your files will know about the standard library by default. (The coursework, however, explicitly depends on the standard library, so it doesn't rely on this step.)
+
+9\. Now you are ready to start working on your first coursework :slightly_smiling_face:. Good luck!
