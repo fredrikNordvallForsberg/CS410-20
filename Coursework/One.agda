@@ -33,7 +33,7 @@ open import Data.Sum         using (_⊎_; inj₁; inj₂)
 open import Data.Empty       using (⊥; ⊥-elim)
 open import Function         using (_∘_; id)
 open import Relation.Nullary using (¬_)
-open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; sym; trans)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong; sym; trans; module ≡-Reasoning)
 
 -- HINT: your tasks are labelled with the very searchable tag '???'
 
