@@ -19,29 +19,13 @@ open import Lectures.Equality
 -- _≡_ is reflexive by design. What about symmetry and transitivity?
 
 sym : {A : Set} -> {x y : A} -> x ≡ y -> y ≡ x
-sym p = {!!}
+sym refl = refl
 
 trans : {A : Set} -> {x y z : A} -> x ≡ y -> y ≡ z -> x ≡ z
-trans p q = {!!}
+trans refl q = q
 
 subst : {A : Set} -> (P : A -> Set) -> {x y : A} -> x ≡ y -> P x -> P y
-subst P p z = {!!}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+subst P refl z = z
 
 {-
 What have we learnt?
@@ -50,17 +34,6 @@ What have we learnt?
 
 2. We can substitute equal things for equal things
 -}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -87,21 +60,13 @@ revListFast acc (x ∷ xs) = revListFast (x ∷ acc) xs
 -- let's do the same for vectors!
 
 revAcc : {A : Set}{n m : ℕ} -> Vec A n -> Vec A m -> Vec A (n + m)
-revAcc {A} acc xs = {!!}
+revAcc {A} acc [] = subst (Vec A) (sym (+-identity-right _)) acc
+revAcc {A} acc (x ∷ xs) = subst (Vec A) (sym (+suc _ _)) (revAcc (x ∷ acc) xs)
 
+reverse : {A : Set}{m : ℕ} -> Vec A m -> Vec A m
+reverse = revAcc []
 
-
-
-
-
-
-
-
-
-
-
-
-
+test = reverse (1 ∷ 2 ∷ 3 ∷ [])
 
 {-
 What have we learnt?
@@ -110,9 +75,6 @@ What have we learnt?
 
 2. In certain situations, we can also use rewrite
 -}
-
-
-
 
 ----------------------------------------------------------------------
 -- Structural equalities
@@ -130,68 +92,40 @@ syntax ≡-syntax A x y = x ≡[ A ] y
 
 pair-≡ : {A B : Set} {a a' : A}{b b' : B} ->
          a ≡[ A ]  a' -> b ≡[ B ] b' -> (a , b) ≡[ A × B ] (a' , b')
-pair-≡ a=a' b=b' = {!!}
+pair-≡ refl refl = refl
 
 -----------------------------------
 -- When are dependent pairs equal?
 -----------------------------------
 
 dpair-≡ : {A : Set}{B : A -> Set} {a a' : A}{b : B a}{b' : B a'}  ->
-         (p : a ≡[ A ]  a') -> subst B p b ≡[ B a' ] b' -> (a , b) ≡[ Σ A B ] (a' , b')
-dpair-≡ p q = {!!}
+         (p : a ≡[ A ] a') -> subst B p b ≡[ B a' ] b' ->
+            (a , b) ≡[ Σ A B ] (a' , b')
+dpair-≡ refl refl = refl
 
 -----------------------------
 -- When are functions equal?
 -----------------------------
 
-
-funext : {A : Set}{B : A -> Set}{f f' : (x : A) -> B x} ->
-          ((x : A) -> f x ≡[ B x ] f' x) -> f ≡ f'
-funext p = {!!}
-
+postulate
+  -- no provable
+  funext : {A : Set}{B : A -> Set}{f f' : (x : A) -> B x} ->
+            ((x : A) -> f x ≡[ B x ] f' x) -> f ≡ f'
 
 -----------------------------------
 -- When are equality proofs equal?
 -----------------------------------
 
 UIP : {A : Set}{x y : A}(p q : x ≡[ A ] y) -> p ≡[ (x ≡ y) ] q
-UIP p q = {!!}
+UIP refl refl = refl
 
 -- "uniqueness of identity proofs"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -- Equivalently known as "Axiom K" (I for Identity, then J, then K)
 
 -- By refuting Axiom K, we can get new models with interesting
 -- properties; this is known as "Homotopy Type Theory" and related to
 -- "Cubical Agda".
-
-
-
-
-
-
 
 
 
