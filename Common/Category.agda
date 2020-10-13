@@ -52,14 +52,6 @@ record Functor (C D : Category) : Set where
                    fmap (g C.∘ f) ≡ fmap g D.∘ fmap f
 open Functor
 
-{-
-equalFunctor : {C D : Category} -> (F G : Functor C D) ->
-               (act-eq : (X : Obj C) -> act F X ≡ act G X) ->
-               (fmap-eq : ∀ {A B} → (f : Hom C A B) -> subst₂ (Hom D) (act-eq A) (act-eq B) (fmap F f) ≡ fmap G f) ->
-               F ≡ G
-equalFunctor F G act-eq fmap-eq  = {!!}
--}
-
 record NaturalTransformation {C D : Category}
                              (F G : Functor C D) : Set where
   eta-equality
