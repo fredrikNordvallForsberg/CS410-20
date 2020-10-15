@@ -22,7 +22,7 @@ e1 : Expr
 e1 = num 7 +E num 3 +E num 5
 
 e2 : Expr
-e2 = (ifE bit true then num 2 else num 4) +E num 0
+e2 = (ifE bit true then num 0 +E num 2 else num 4 +E num 0 +E num 0) +E num 0
 
 ne3 : Expr
 ne3 = ifE num 6 then bit false else bit true
@@ -88,7 +88,7 @@ te1 : TExpr nat
 te1 = num 7 +E num 3 +E num 5
 
 te2 : TExpr nat
-te2 = (ifE bit true then num 2 else num 4) +E num 0
+te2 = (ifE bit true then num 0 +E num 2 else num 4 +E num 0 +E num 0) +E num 0
 
 -- tne3 : TExpr ?
 -- tne3 = ifE num 6 then bit false else bit true
