@@ -126,3 +126,34 @@ comp (porder P) = transitive P
 assoc (porder P) = propositional P _ _
 identityˡ (porder P) = propositional P _ _
 identityʳ (porder P) = propositional P _ _
+
+
+---------------------------------------------------------------------------
+-- Now You Try
+---------------------------------------------------------------------------
+
+record MonotoneMap (P Q : Preorder) : Set1 where
+  private
+    module P = Preorder P
+    module Q = Preorder Q
+
+  field
+    fun : Carrier P -> Carrier Q
+    monotone : ∀ x y → x P.≤ y -> fun x Q.≤ fun y
+open MonotoneMap
+
+eqMonotoneMap : {P Q : Preorder} -> {f g : MonotoneMap P Q} ->
+                   fun f ≡ fun g -> f ≡ g
+eqMonotoneMap {P} {Q} {f} {g} refl = cong (λ z → record { fun = fun g; monotone = z })
+                                          (ext λ x → ext (λ y → ext λ p → propositional Q _ _))
+
+PREORDER : Category
+Obj PREORDER = Preorder
+Hom PREORDER = MonotoneMap
+fun (Category.id PREORDER) = λ x → x
+monotone (Category.id PREORDER) x y p = p
+fun (comp PREORDER f g) x = fun g (fun f x)
+monotone (comp PREORDER f g) x y p = monotone g _ _ (monotone f _ _ p)
+assoc PREORDER = eqMonotoneMap refl
+identityˡ PREORDER = eqMonotoneMap refl
+identityʳ PREORDER = eqMonotoneMap refl
