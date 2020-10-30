@@ -28,7 +28,7 @@ module _ {C : Category} where
   open Functor
 
 {-
-      F (if ∘ f)
+      F (id ∘ f)
   F Z ----------> F Z
    |               |
    |               |
