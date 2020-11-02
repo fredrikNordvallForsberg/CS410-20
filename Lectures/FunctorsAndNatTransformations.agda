@@ -8,7 +8,7 @@ open import Relation.Binary.PropositionalEquality
 open import Axiom.Extensionality.Propositional
 open import Axiom.UniquenessOfIdentityProofs.WithK
 
-open import Common.Category
+open import Common.Category hiding (idFunctor; compFunctor)
 
 open import Lectures.Categories
 

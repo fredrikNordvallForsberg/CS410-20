@@ -12,7 +12,7 @@ open import Function hiding (_∘_; id)
 open import Lectures.FunctorsAndNatTransformations
 open import Lectures.Categories
 
-open import Common.Category
+open import Common.Category hiding (Monad; idFunctor; compFunctor)
 open import Common.Category.Solver
 
 
@@ -66,11 +66,11 @@ module _ {C : Category} (M : Monad C) where
     (< join M _ > ∘Syn fmapSyn (functor M) < f >) ∘Syn < return M _ >
       ≡⟦ solveCat refl ⟧
     < join M _ > ∘Syn -[ fmapSyn (functor M) < f > ∘Syn < return M _ > ]-
-      ≡⟦ reduced (rq (sym (natural (returnNT M) _ _ f)) , rd) ⟧
+      ≡⟦ reduced (rd , rq (sym (natural (returnNT M) _ _ f))) ⟧
     < join M _ > ∘Syn -[ < return M _ > ∘Syn < f > ]-
       ≡⟦ solveCat refl ⟧
     -[ < join M _ > ∘Syn < return M _ > ]- ∘Syn < f >
-      ≡⟦ reduced (rd , rq (returnJoin M)) ⟧
+      ≡⟦ reduced (rq (returnJoin M) , rd) ⟧
     -[ idSyn ]- ∘Syn < f >
       ≡⟦ solveCat refl ⟧
     < f >
@@ -82,11 +82,11 @@ module _ {C : Category} (M : Monad C) where
     < join M _ > ∘Syn fmapSyn (functor M) ((< join M _ > ∘Syn fmapSyn (functor M) < g >) ∘Syn < f >)
       ≡⟦ solveCat refl ⟧
     -[ < join M _ > ∘Syn fmapSyn (functor M) < join M _ > ]- ∘Syn fmapSyn (functor M) (fmapSyn (functor M) < g >) ∘Syn fmapSyn (functor M) < f >
-      ≡⟦ reduced ((rd , rd) , rq (sym (joinJoin M))) ⟧
+      ≡⟦ reduced (rq (sym (joinJoin M)) , rd , rd) ⟧
     -[ < join M _ > ∘Syn  < join M _ > ]- ∘Syn fmapSyn (functor M) (fmapSyn (functor M) < g >) ∘Syn fmapSyn (functor M) < f >
       ≡⟦ solveCat refl ⟧
     < join M _ > ∘Syn -[ < join M _ > ∘Syn fmapSyn (functor M) (fmapSyn (functor M) < g >) ]- ∘Syn fmapSyn (functor M) < f >
-      ≡⟦ reduced ((rd , rq (natural (joinNT M) _ _ g)) , rd) ⟧
+      ≡⟦ reduced (rd , rq (natural (joinNT M) _ _ g) , rd) ⟧
     < join M _ > ∘Syn -[ fmapSyn (functor M) < g > ∘Syn < join M _ > ]- ∘Syn fmapSyn (functor M) < f >
       ≡⟦ solveCat refl ⟧
     (< join M _ > ∘Syn fmapSyn (functor M) < g >) ∘Syn (< join M _ > ∘Syn fmapSyn (functor M) < f >)
@@ -234,9 +234,9 @@ module _ where
   concat-++ xss yss = {!!}
 
   LIST-MONAD : Monad SET
-  functor LIST-MONAD = ?
-  returnNT LIST-MONAD = ?
-  joinNT LIST-MONAD = ?
-  returnJoin LIST-MONAD = ?
-  mapReturnJoin LIST-MONAD = ?
-  joinJoin LIST-MONAD = ?
+  functor LIST-MONAD = {!!}
+  returnNT LIST-MONAD = {!!}
+  joinNT LIST-MONAD = {!!}
+  returnJoin LIST-MONAD = {!!}
+  mapReturnJoin LIST-MONAD = {!!}
+  joinJoin LIST-MONAD = {!!}

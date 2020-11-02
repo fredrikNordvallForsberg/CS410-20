@@ -12,7 +12,7 @@ open import Function hiding (_∘_; id)
 open import Lectures.FunctorsAndNatTransformations
 open import Lectures.Categories
 
-open import Common.Category
+open import Common.Category hiding (Monad)
 
 open import Lectures.Monads
 
