@@ -108,3 +108,28 @@ module _ {C : Category} where
     < f >
       ⟦∎⟧
 
+---------------------------------------------------------------------------
+-- Now you try
+---------------------------------------------------------------------------
+
+  EmbedKleisli : (M : Monad C) -> Functor C (Kleisli M)
+  Functor.act (EmbedKleisli M) X = X
+  Functor.fmap (EmbedKleisli M) f = return M _ ∘ f where open Category C
+  Functor.identity (EmbedKleisli M) = C ⊧begin
+    < return M _ > ∘Syn idSyn
+      ≡⟦ solveCat refl ⟧
+    < return M _ >
+      ⟦∎⟧
+  Functor.homomorphism (EmbedKleisli M) {f = f} {g = g} = C ⊧begin
+     < return M _ > ∘Syn (< g > ∘Syn < f > )
+      ≡⟦ solveCat refl ⟧
+     -[ < return M _ > ∘Syn < g > ]- ∘Syn < f >
+      ≡⟦ reduced (rq (natural (returnNT M) _ _ g) , rd) ⟧
+    -[ fmapSyn (functor M) < g > ∘Syn < return M _ > ]- ∘Syn < f >
+      ≡⟦ solveCat refl ⟧
+    -[ idSyn ]- ∘Syn fmapSyn (functor M) < g > ∘Syn < return M _ > ∘Syn < f >
+      ≡⟦ reduced (rq (sym (mapReturnJoin M)) , rd , rd , rd) ⟧
+    -[ < join M _ > ∘Syn fmapSyn (functor M) < return M _ > ]- ∘Syn fmapSyn (functor M) < g > ∘Syn < return M _ > ∘Syn < f >
+     ≡⟦ solveCat refl ⟧
+    < join M _ > ∘Syn (fmapSyn (functor M) (< return M _ > ∘Syn < g > ) ∘Syn (< return M _ > ∘Syn < f > ))
+      ⟦∎⟧
